@@ -1,2 +1,7 @@
-# c-sharp-parte-8-list-lambda-linq
-Alura - C# parte 8: List, lambda, linq
+# C# parte 8: List, lambda, linq
+- Conheça tipo genérico List e seus métodos
+- Aprenda as principais formas de ordenar listas
+- Crie métodos de extensão genéricos
+- Simplifique seu código com o VAR
+- Conheça expressões lambda
+- Conheça o Linq
