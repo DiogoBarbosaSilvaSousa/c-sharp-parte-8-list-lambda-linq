@@ -14,6 +14,15 @@ namespace ByteBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
+            TestaLinq();
+
+
+            Console.ReadLine();
+        }
+
+
+        static void TestaLinq()
+        {
             var contas = new List<ContaCorrente>()
             {
                 new ContaCorrente(341, 5),
@@ -31,27 +40,57 @@ namespace ByteBank.SistemaAgencia
 
             // contas.Sort(new ComparadorContaCorrentePorAgencia());
 
-            IOrderedEnumerable<ContaCorrente> contasOrdenadas = contas.OrderBy(conta => { 
-            
-                if(conta == null)
+
+           var contasOrdenadas = contas
+                .Where(conta => conta != null)
+                .OrderBy(conta => { return conta.Numero; });
+
+            foreach (var conta in contasOrdenadas)
+            {
+
+                Console.WriteLine($"Conta número {conta.Numero}, ag. {conta.Agencia}");
+
+            }
+        }
+
+        static void TestaOrderBy()
+        {
+            var contas = new List<ContaCorrente>()
+            {
+                new ContaCorrente(341, 5),
+                new ContaCorrente(342, 45678),
+                null,
+                new ContaCorrente(340, 1),
+                new ContaCorrente(340, 99999),
+                null,
+                new ContaCorrente(340, 20),
+                new ContaCorrente(290, 35),
+                null
+            };
+
+            // contas.Sort(); ~~> Chamar a implementação dada em IComparable
+
+            // contas.Sort(new ComparadorContaCorrentePorAgencia());
+
+            IOrderedEnumerable<ContaCorrente> contasOrdenadas = contas.OrderBy(conta =>
+            {
+
+                if (conta == null)
                 {
                     return int.MaxValue;
                 }
 
-                return conta.Numero; 
+                return conta.Numero;
             });
 
             foreach (var conta in contasOrdenadas)
             {
-                if(conta != null)
+                if (conta != null)
                 {
                     Console.WriteLine($"Conta número {conta.Numero}, ag. {conta.Agencia}");
                 }
-               
+
             }
-
-
-            Console.ReadLine();
         }
 
         static void TestaSort()
